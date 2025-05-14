@@ -1,1 +1,1 @@
-# apresentacao-ds-react
+yarn install e yarn dev
