@@ -18,21 +18,21 @@ const App = () => {
     paginatedItems,
     currentPage,
     totalPages,
-    menuAberto,
+    openMenu,
     handlePageChange,
     handleModelValueChange,
     actions,
-    abriMenu,
+    handleMenu,
   } = useComponents();
 
-  const vSlots = {
+  const dataTableSlots = {
     groupButton: (
       <div className="flex gap-2">
-        <button className="bg-blue-500 p-3 rounded-lg text-white w-28 sm:w-full">
-          Enviar
+        <button className="border-[1px] h-10 rounded-lg text-ce_medium_gray w-28 sm:w-full">
+          Baixar
         </button>
-        <button className="bg-red-500 p-3 rounded-lg text-white w-28 sm:w-full">
-          Excluir
+        <button className="bg-ce_green rounded-lg text-white w-28 sm:w-full h-10">
+          Upload
         </button>
       </div>
     ),
@@ -73,7 +73,7 @@ const App = () => {
     ),
   };
 
-  const slotLayout = {
+  const layoutSlots = {
     header: (
       <CeMenuHeader itemsMenuMyService={itemsMenuMyService} itemsMenu={items} />
     ),
@@ -83,7 +83,7 @@ const App = () => {
         items={items}
         isHome={true}
         isSearch={true}
-        onToggleMenu={abriMenu}
+        onToggleMenu={handleMenu}
       />
     ),
     content: (
@@ -93,20 +93,15 @@ const App = () => {
         search
         headers={headers}
         items={paginatedItems}
-        v-slots={vSlots}
+        v-slots={dataTableSlots}
         onUpdate:modelValue={handleModelValueChange}
       />
     ),
-
     footer: <CeFooter variant="5" background="white" />,
   };
 
   return (
-    <CeLayout
-      layout="default"
-      openMenu={menuAberto}
-      v-slots={slotLayout}
-    ></CeLayout>
+    <CeLayout layout="default" openMenu={openMenu} v-slots={layoutSlots} />
   );
 };
 

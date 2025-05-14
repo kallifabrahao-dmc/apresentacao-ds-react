@@ -2,10 +2,10 @@ import { useState } from "react";
 import { homeLine, layersThree } from "@comercti/icons-hmg";
 
 export const useComponents = () => {
-  const ITEMS_PER_PAGE = 7;
+  const itemsPerPage = 7;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [menuAberto, setMenuAberto] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const headers = [
     { text: "Nome", value: "name", sortable: true },
@@ -232,19 +232,19 @@ export const useComponents = () => {
     },
   ];
 
-  const totalPages = Math.ceil(itemsDataTable.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(itemsDataTable.length / itemsPerPage);
 
   const paginatedItems = itemsDataTable.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
   );
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const abriMenu = (clicado: boolean) => {
-    setMenuAberto(clicado);
+  const handleMenu = (clicado: boolean) => {
+    setOpenMenu(clicado);
   };
 
   const actions = (item) => {
@@ -266,7 +266,7 @@ export const useComponents = () => {
     handlePageChange,
     handleModelValueChange,
     actions,
-    abriMenu,
-    menuAberto,
+    handleMenu,
+    openMenu,
   };
 };
